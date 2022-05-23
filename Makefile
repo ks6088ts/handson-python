@@ -8,6 +8,9 @@ POETRY_RUN ?= $(POETRY) run
 POETRY_VENV_CREATE ?= true
 POETRY_VENV_IN_PROJECT ?= true
 
+JUPYTER_LAB_IP ?= localhost
+JUPYTER_LAB_PORT ?= 8000
+
 .PHONY: help
 help:
 	echo $(SOURCE_FILES)
@@ -50,3 +53,10 @@ test: ## run tests
 
 .PHONY: ci-test
 ci-test: install-poetry install-deps-dev format-check lint test ## ci test
+
+.PHONY: jupyterlab
+jupyterlab: ## run jupyterlab server
+	$(POETRY_RUN) jupyter lab \
+		--ip $(JUPYTER_LAB_IP) \
+		--port $(JUPYTER_LAB_PORT) \
+		--notebook-dir ./notebooks
