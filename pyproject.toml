@@ -17,6 +17,26 @@ pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 mkdocs-material = "^8.2.15"
 
+[tool.isort]
+profile = "black"
+include_trailing_comma = true
+line_length = 120
+
+[tool.black]
+line-length = 120
+exclude = '''
+(
+    migrations
+    | .mypy_cache
+    | .pytest_cache
+    | .tox
+    | .venv
+)
+'''
+
+[tool.mypy]
+ignore_missing_imports = true
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
